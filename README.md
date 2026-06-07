@@ -87,7 +87,8 @@ npx serve .
 viral-copy-generator/
 ├── index.html          # 主程序（单文件，零依赖）
 ├── favicon.svg         # 网页图标
-├── sponsor.jpg         # 赞赏码
+├── sponsor.jpg         # 微信赞赏码
+├── sponsor-alipay.jpg  # 支付宝赞赏码
 ├── vercel.json         # Vercel 部署配置
 └── README.md           # 本文件
 ```
@@ -105,7 +106,20 @@ MIT License — 可自由使用、修改、分发。
 如果这个项目对你有帮助，欢迎赞赏支持，让我有动力持续迭代 👇
 
 <p align="center">
-  <img src="sponsor.jpg" width="280" alt="赞赏码">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="sponsor.jpg" width="240" alt="微信赞赏码">
+        <br>
+        <sub>微信支付</sub>
+      </td>
+      <td align="center">
+        <img src="sponsor-alipay.jpg" width="240" alt="支付宝赞赏码">
+        <br>
+        <sub>支付宝</sub>
+      </td>
+    </tr>
+  </table>
   <br>
   <sub>「感恩遇见」</sub>
 </p>
