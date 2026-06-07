@@ -252,6 +252,8 @@
             font-size: 28px;
             margin-bottom: 8px;
             display: block;
+            color: var(--text-primary);
+            font-weight: 700;
         }
 
         .platform-btn .name {
@@ -1151,6 +1153,8 @@
                 initPlatformSelector();
                 initVoiceSelector();
                 loadSavedRecords();
+                // i18n init after DOM ready
+                if(typeof init === 'function') { init(); }
                 console.log('[DEBUG] DOMContentLoaded 执行完成');
             } catch(e) {
                 console.error('[DEBUG] DOMContentLoaded 出错:', e);
@@ -1972,12 +1976,7 @@
 
     <script src="i18n.js"></script>
     <script>
-        // i18n init: call after i18n.js is loaded
-        try {
-            if(typeof init === 'function') { init(); }
-            else if(typeof initI18n === 'function') { initI18n(); }
-            else { console.warn('i18n init functions not found'); }
-        } catch(e) { console.error('i18n init error', e); }
+        // i18n init moved to DOMContentLoaded in main script
     </script>
 </body>
 </html>
