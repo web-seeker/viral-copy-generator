@@ -1940,19 +1940,19 @@
         }
     </script>
     <!-- 语言切换 -->
-    <div id="langSwitcher" style="position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;gap:6px;flex-wrap:wrap;max-width:200px;justify-content:flex-end;">
-        <button onclick="toggleLangPanel()" id="langSwitchBtn" style="padding:8px 12px;bg:rgba(26,26,26,0.95);color:#fff;border:1px solid #333;border-radius:20px;cursor:pointer;font-size:18px;backdrop-filter:blur(8px);">🌐</button>
-        <div id="langPanel" style="display:none;bg:rgba(26,26,26,0.98);border:1px solid #333;border-radius:12px;padding:8px;flex-direction:column;gap:4px;backdrop-filter:blur(8px);">
-            <button onclick="setLang('zh-CN')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇨🇳 中文</button>
-            <button onclick="setLang('en')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇺🇸 English</button>
-            <button onclick="setLang('ja')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇯🇵 日本語</button>
-            <button onclick="setLang('ko')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇰🇷 한국어</button>
-            <button onclick="setLang('es')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇪🇸 Español</button>
-            <button onclick="setLang('fr')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇫🇷 Français</button>
-            <button onclick="setLang('de')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇩🇪 Deutsch</button>
-            <button onclick="setLang('ru')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇷🇺 Русский</button>
-            <button onclick="setLang('pt')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇧🇷 Português</button>
-            <button onclick="setLang('ar')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇸🇦 العربية</button>
+    <div id="langSwitcher" style="position:fixed;bottom:20px;right:20px;z-index:9999;">
+        <button onclick="toggleLangPanel()" id="langSwitchBtn" style="padding:10px 14px;background:rgba(30,30,30,0.95);color:#fff;border:1px solid #444;border-radius:50%;cursor:pointer;font-size:20px;backdrop-filter:blur(8px);box-shadow:0 4px 12px rgba(0,0,0,0.4);width:48px;height:48px;display:flex;align-items:center;justify-content:center;">🌐</button>
+        <div id="langPanel" style="display:none;position:absolute;bottom:56px;right:0;background:rgba(30,30,30,0.98);border:1px solid #444;border-radius:12px;padding:8px;flex-direction:column;gap:4px;backdrop-filter:blur(8px);box-shadow:0 4px 16px rgba(0,0,0,0.5);min-width:160px;">
+            <button onclick="setLang('zh-CN')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇨🇳 中文</button>
+            <button onclick="setLang('en')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇺🇸 English</button>
+            <button onclick="setLang('ja')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇯🇵 日本語</button>
+            <button onclick="setLang('ko')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇰🇷 한국어</button>
+            <button onclick="setLang('es')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇪🇸 Español</button>
+            <button onclick="setLang('fr')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇫🇷 Français</button>
+            <button onclick="setLang('de')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇩🇪 Deutsch</button>
+            <button onclick="setLang('ru')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇷🇺 Русский</button>
+            <button onclick="setLang('pt')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇧🇷 Português</button>
+            <button onclick="setLang('ar')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇸🇦 العربية</button>
         </div>
     </div>
     <script>
