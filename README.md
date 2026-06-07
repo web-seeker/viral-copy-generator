@@ -87,6 +87,7 @@ npx serve .
 viral-copy-generator/
 ├── index.html          # 主程序（单文件，零依赖）
 ├── favicon.svg         # 网页图标
+├── sponsor.jpg         # 赞赏码
 ├── vercel.json         # Vercel 部署配置
 └── README.md           # 本文件
 ```
@@ -96,6 +97,18 @@ viral-copy-generator/
 ## 📄 License
 
 MIT License — 可自由使用、修改、分发。
+
+---
+
+## 🍻 赞赏支持
+
+如果这个项目对你有帮助，欢迎赞赏支持，让我有动力持续迭代 👇
+
+<p align="center">
+  <img src="sponsor.jpg" width="280" alt="赞赏码">
+  <br>
+  <sub>「感恩遇见」</sub>
+</p>
 
 ---
 
