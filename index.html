@@ -858,6 +858,10 @@
         /* 滚动条美化 */
 </head>
 <body>
+    <!-- 调试提示：如果看到这行，说明HTML已加载，JS未执行或出错 -->
+    <div id="debug-msg" style="background:#ff0;color:#000;padding:8px;text-align:center;font-size:14px;display:block;">
+        ⚠️ 页面加载调试中...如果看到此条，说明JavaScript未正常执行
+    </div>
 
     <!-- 导航栏 -->
     <nav class="navbar" id="navbar">
@@ -1135,10 +1139,20 @@
 
         // ==================== 初始化 ====================
         document.addEventListener('DOMContentLoaded', function() {
-            initNavigation();
-            initPlatformSelector();
-            initVoiceSelector();
-            loadSavedRecords();
+            try {
+                // 隐藏调试提示
+                var dbg = document.getElementById('debug-msg');
+                if (dbg) dbg.style.display = 'none';
+                
+                initNavigation();
+                initPlatformSelector();
+                initVoiceSelector();
+                loadSavedRecords();
+                console.log('[DEBUG] DOMContentLoaded 执行完成');
+            } catch(e) {
+                console.error('[DEBUG] DOMContentLoaded 出错:', e);
+                alert('页面初始化出错: ' + e.message);
+            }
         });
 
         // ==================== 导航 ====================
