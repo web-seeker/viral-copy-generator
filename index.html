@@ -1153,8 +1153,6 @@
                 initPlatformSelector();
                 initVoiceSelector();
                 loadSavedRecords();
-                // i18n init after DOM ready
-                if(typeof init === 'function') { init(); }
                 console.log('[DEBUG] DOMContentLoaded 执行完成');
             } catch(e) {
                 console.error('[DEBUG] DOMContentLoaded 出错:', e);
@@ -1922,61 +1920,14 @@
             div.textContent = text;
             return div.innerHTML;
         }
-
-        // ==================== i18n 动态Toast ====================
-        window._toastMap = {
-            '请输入产品类型': 'to.np', '请粘贴原始文案': 'to.no', '请先选择目标语言': 'to.nl', '请先输入产品类型或产品卖点': 'to.ni',
-            '❌ 文案生成失败: ': 'to.gf', '❌ 文案重写失败: ': 'to.rf', '❌ 复制失败，请手动复制': 'to.cf', '❌ 音频播放失败': 'to.pf', '❌ TTS 服务错误': 'to.te', '❌ 音频下载失败': 'to.df', '❌ 翻译失败，请稍后重试': 'to.tf', '❌ 翻译出错：': 'to.te2',
-            '✅ 已复制到剪贴板': 'to.ok', '💾 保存成功': 'to.sk', '✅ 音频下载已开始': 'to.dk', '✅ 已翻译为': 'to.tl', '🗑️ 已删除': 'to.dd', '🗑️ 已全部清空': 'to.cl', '⬇️ 正在生成音频...': 'to.ga', '请先生成文案': 'to.gf2',
-            '确定要清空所有保存的记录吗？此操作不可恢复。': 'to.cf2'
-        };
         function showToast(msg, type) {
-            var map = window._toastMap;
-            var realMsg = msg;
-            if (map[msg] && typeof dynt === 'function') {
-                realMsg = dynt(map[msg]);
-            }
             const toast = document.getElementById('toast');
-            toast.textContent = realMsg;
+            toast.textContent = msg;
             toast.className = 'toast ' + type;
             setTimeout(function(){ toast.classList.add('show'); }, 10);
             setTimeout(function(){ toast.classList.remove('show'); }, 3000);
         }
     </script>
-    <!-- 语言切换 -->
-    <div id="langSwitcher" style="position:fixed;bottom:20px;right:20px;z-index:9999;">
-        <button onclick="toggleLangPanel()" id="langSwitchBtn" style="padding:10px 14px;background:rgba(30,30,30,0.95);color:#fff;border:1px solid #444;border-radius:50%;cursor:pointer;font-size:20px;backdrop-filter:blur(8px);box-shadow:0 4px 12px rgba(0,0,0,0.4);width:48px;height:48px;display:flex;align-items:center;justify-content:center;">🌐</button>
-        <div id="langPanel" style="display:none;position:absolute;bottom:56px;right:0;background:rgba(30,30,30,0.98);border:1px solid #444;border-radius:12px;padding:8px;flex-direction:column;gap:4px;backdrop-filter:blur(8px);box-shadow:0 4px 16px rgba(0,0,0,0.5);min-width:160px;">
-            <button onclick="setLang('zh-CN')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇨🇳 中文</button>
-            <button onclick="setLang('en')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇺🇸 English</button>
-            <button onclick="setLang('ja')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇯🇵 日本語</button>
-            <button onclick="setLang('ko')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇰🇷 한국어</button>
-            <button onclick="setLang('es')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇪🇸 Español</button>
-            <button onclick="setLang('fr')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇫🇷 Français</button>
-            <button onclick="setLang('de')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇩🇪 Deutsch</button>
-            <button onclick="setLang('ru')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇷🇺 Русский</button>
-            <button onclick="setLang('pt')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇧🇷 Português</button>
-            <button onclick="setLang('ar')" style="padding:8px 12px;background:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;white-space:nowrap;">🇸🇦 العربية</button>
-        </div>
-    </div>
-    <script>
-        function toggleLangPanel(){
-            const p=document.getElementById('langPanel');
-            p.style.display=p.style.display==='none'?'flex':'none';
-        }
-        // close panel on outside click
-        document.addEventListener('click',function(e){
-            const s=document.getElementById('langSwitcher');
-            if(s&&!s.contains(e.target)){
-                const p=document.getElementById('langPanel');
-                if(p)p.style.display='none';
-            }
-        });
-    </script>
 
-    <script src="i18n.js"></script>
-    <script>
-        // i18n init moved to DOMContentLoaded in main script
-    </script>
 </body>
 </html>
