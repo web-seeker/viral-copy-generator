@@ -1918,6 +1918,66 @@
             div.textContent = text;
             return div.innerHTML;
         }
+
+        // ==================== i18n 动态Toast ====================
+        window._toastMap = {
+            '请输入产品类型': 'to.np', '请粘贴原始文案': 'to.no', '请先选择目标语言': 'to.nl', '请先输入产品类型或产品卖点': 'to.ni',
+            '❌ 文案生成失败: ': 'to.gf', '❌ 文案重写失败: ': 'to.rf', '❌ 复制失败，请手动复制': 'to.cf', '❌ 音频播放失败': 'to.pf', '❌ TTS 服务错误': 'to.te', '❌ 音频下载失败': 'to.df', '❌ 翻译失败，请稍后重试': 'to.tf', '❌ 翻译出错：': 'to.te2',
+            '✅ 已复制到剪贴板': 'to.ok', '💾 保存成功': 'to.sk', '✅ 音频下载已开始': 'to.dk', '✅ 已翻译为': 'to.tl', '🗑️ 已删除': 'to.dd', '🗑️ 已全部清空': 'to.cl', '⬇️ 正在生成音频...': 'to.ga', '请先生成文案': 'to.gf2',
+            '确定要清空所有保存的记录吗？此操作不可恢复。': 'to.cf2'
+        };
+        function showToast(msg, type) {
+            var map = window._toastMap;
+            var realMsg = msg;
+            if (map[msg] && typeof dynt === 'function') {
+                realMsg = dynt(map[msg]);
+            }
+            const toast = document.getElementById('toast');
+            toast.textContent = realMsg;
+            toast.className = 'toast ' + type;
+            setTimeout(function(){ toast.classList.add('show'); }, 10);
+            setTimeout(function(){ toast.classList.remove('show'); }, 3000);
+        }
+    </script>
+    <!-- 语言切换 -->
+    <div id="langSwitcher" style="position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;gap:6px;flex-wrap:wrap;max-width:200px;justify-content:flex-end;">
+        <button onclick="toggleLangPanel()" id="langSwitchBtn" style="padding:8px 12px;bg:rgba(26,26,26,0.95);color:#fff;border:1px solid #333;border-radius:20px;cursor:pointer;font-size:18px;backdrop-filter:blur(8px);">🌐</button>
+        <div id="langPanel" style="display:none;bg:rgba(26,26,26,0.98);border:1px solid #333;border-radius:12px;padding:8px;flex-direction:column;gap:4px;backdrop-filter:blur(8px);">
+            <button onclick="setLang('zh-CN')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇨🇳 中文</button>
+            <button onclick="setLang('en')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇺🇸 English</button>
+            <button onclick="setLang('ja')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇯🇵 日本語</button>
+            <button onclick="setLang('ko')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇰🇷 한국어</button>
+            <button onclick="setLang('es')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇪🇸 Español</button>
+            <button onclick="setLang('fr')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇫🇷 Français</button>
+            <button onclick="setLang('de')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇩🇪 Deutsch</button>
+            <button onclick="setLang('ru')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇷🇺 Русский</button>
+            <button onclick="setLang('pt')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇧🇷 Português</button>
+            <button onclick="setLang('ar')" style="padding:6px 10px;bg:transparent;color:#fff;border:1px solid #333;border-radius:8px;cursor:pointer;font-size:13px;text-align:left;">🇸🇦 العربية</button>
+        </div>
+    </div>
+    <script>
+        function toggleLangPanel(){
+            const p=document.getElementById('langPanel');
+            p.style.display=p.style.display==='none'?'flex':'none';
+        }
+        // close panel on outside click
+        document.addEventListener('click',function(e){
+            const s=document.getElementById('langSwitcher');
+            if(s&&!s.contains(e.target)){
+                const p=document.getElementById('langPanel');
+                if(p)p.style.display='none';
+            }
+        });
+    </script>
+
+    <script src="i18n.js"></script>
+    <script>
+        // i18n init: call after i18n.js is loaded
+        try {
+            if(typeof init === 'function') { init(); }
+            else if(typeof initI18n === 'function') { initI18n(); }
+            else { console.warn('i18n init functions not found'); }
+        } catch(e) { console.error('i18n init error', e); }
     </script>
 </body>
 </html>
